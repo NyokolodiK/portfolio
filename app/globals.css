@@ -15,4 +15,13 @@
   .h3 {
     @apply text-[32px] xl:text-[48px] leading-[1.1] font-semibold;
   }
+
+  .text-outline {
+    -webkit-text-stroke: 1px #fff;
+  }
+
+  .text-outline-hover {
+    -webkit-text-stroke: 1px #00ff99;
+    transition: -webkit-text-stroke 0.3s ease;
+  }
 }
