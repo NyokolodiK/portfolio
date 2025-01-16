@@ -67,11 +67,6 @@ const experience = {
   description: "Work Experience",
   items: [
     {
-      company: "Confluence Technologies",
-      position: "Senior Frontend Engineer",
-      duration: "July 2022 – Present",
-    },
-    {
       company: "NTT",
       position: "Senior Frontend Engineer",
       duration: "July 2020 – 2022",
