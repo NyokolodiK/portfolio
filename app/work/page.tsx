@@ -68,7 +68,7 @@ const experience = {
   items: [
     {
       company: "NTT",
-      position: "Senior Frontend Engineer",
+      position: "Senior Software Engineer",
       duration: "July 2020 – 2022",
     },
     {
