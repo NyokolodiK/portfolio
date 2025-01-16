@@ -21,14 +21,16 @@ const Photo = () => {
           }}
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px]"
         >
-          <Image
-            src="/images/kagiso.webp"
-            alt="Kagiso Nyokolodi"
-            priority
-            quality={100}
-            fill
-            className="object-contain border border-accent rounded-full mix-blend-lighten"
-          />
+          <div className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten">
+            <Image
+              src="/images/kagiso.png"
+              alt="Kagiso Nyokolodi"
+              priority
+              quality={100}
+              fill
+              className="object-contain border-[2px] rounded-full  border-accent"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </div>
