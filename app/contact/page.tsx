@@ -8,6 +8,22 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import { useState } from "react";
+
+const contactFormSchema = z.object({
+  name: z.string().nonempty("Name is required"),
+  surname: z.string().nonempty("Surname is required"),
+  email: z
+    .string()
+    .nonempty("Email is required")
+    .email("Invalid email address"),
+  phone: z.string().optional(),
+  message: z.string().nonempty("Message is required"),
+});
+
+export type ContactFormData = z.infer<typeof contactFormSchema>;
 
 const info = [
   {
@@ -27,32 +43,42 @@ const info = [
   },
 ];
 
-// Define the schema using Zod
-const contactFormSchema = z.object({
-  name: z.string().nonempty("Name is required"),
-  surname: z.string().nonempty("Surname is required"),
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Invalid email address"),
-  phone: z.string().optional(),
-  message: z.string().nonempty("Message is required"),
-});
-
-type ContactFormData = z.infer<typeof contactFormSchema>;
-
 const Contact = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log("Form Data:", data);
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const onSubmit = async (data: ContactFormData) => {
+      setIsSubmitting(true);
+
+      try {
+        const response = await axios.post("/api/email", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.status !== 200) {
+          throw new Error("Failed to send message");
+        }
+
+        toast.success("Message sent successfully!");
+        reset();
+      } catch {
+        toast.error(
+          "Something went wrong. Please try again later or contact support."
+        );
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
 
   return (
     <motion.section
@@ -64,6 +90,7 @@ const Contact = () => {
       className="py-6"
     >
       <div className="container mx-auto">
+        <Toaster position="top-right" />
         <div className="flex flex-col xl:flex-row gap-[30px]">
           <div className="xl:h-[54%] order-2 xl:order-none">
             <form
@@ -133,8 +160,13 @@ const Contact = () => {
                   </p>
                 )}
               </div>
-              <Button type="submit" size="default" className="max-w-40">
-                Send Message
+              <Button
+                type="submit"
+                size="default"
+                className="max-w-40"
+                disabled={isSubmitting} // Disable button while submitting
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
