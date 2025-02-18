@@ -36,7 +36,7 @@ const projects = [
       { name: "Shadcn UI" },
     ],
     image: "/images/careconnect.png",
-    live: "",
+    live: "https://care-connect-seven.vercel.app/",
     github: "https://github.com/NyokolodiK/care-connect",
   },
   {
@@ -56,7 +56,7 @@ const projects = [
       { name: "Paypal" },
     ],
     image: "/images/amazon.png",
-    live: "",
+    live: "https://amazon-clone-three-alpha-14.vercel.app/",
     github: "https://github.com/NyokolodiK/amazon-clone",
   },
 ];
