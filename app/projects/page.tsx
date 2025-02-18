@@ -37,7 +37,7 @@ const projects = [
     ],
     image: "/images/careconnect.png",
     live: "",
-    github: "",
+    github: "https://github.com/NyokolodiK/care-connect",
   },
   {
     num: "02",
@@ -57,7 +57,7 @@ const projects = [
     ],
     image: "/images/amazon.png",
     live: "",
-    github: "",
+    github: "https://github.com/NyokolodiK/amazon-clone",
   },
 ];
 
