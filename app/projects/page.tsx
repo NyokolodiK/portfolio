@@ -59,6 +59,44 @@ const projects = [
     live: "https://amazon-clone-three-alpha-14.vercel.app/",
     github: "https://github.com/NyokolodiK/amazon-clone",
   },
+  {
+    num: "03",
+    category: "full stack",
+    title: "Shuttle Client Web App",
+    description:
+      "A user-friendly web application for booking shuttle services, featuring real-time quotes, user authentication, and persistent data across login flows using Zustand state management.",
+    stack: [
+      {
+        name: "React",
+      },
+      { name: "Typescript" },
+      { name: "Next.js" },
+      { name: "Zustand" },
+      { name: "Tailwind CSS" },
+    ],
+    image: "/images/shuttle.png",
+    live: "https://shuttle-client-web-app.vercel.app/",
+    github: "https://github.com/NyokolodiK/shuttle-client-web-app",
+  },
+  {
+    num: "04",
+    category: "full stack",
+    title: "Cine-Scope",
+    description:
+      "A modern movie discovery platform built with Next.js that allows users to browse trending, popular, and top-rated movies and TV shows, with detailed information pages, search functionality, and responsive design.",
+    stack: [
+      {
+        name: "Next.js",
+      },
+      { name: "Typescript" },
+      { name: "Tailwind CSS" },
+      { name: "TMDB API" },
+      { name: "SWR" },
+    ],
+    image: "/images/cine-scope.png",
+    live: "https://cine-scope-pi.vercel.app/",
+    github: "https://github.com/NyokolodiK/cine-scope",
+  },
 ];
 
 const Projects = () => {
@@ -141,13 +179,13 @@ const Projects = () => {
               {projects.map((project, index) => {
                 return (
                   <SwiperSlide key={index} className="w-full">
-                    <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20 ">
+                    <div className="h-[460px] relative group flex justify-center items-center bg-black/10">
                       <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
                       <div className="relative w-full h-full">
                         <Image
                           src={project.image}
                           alt={project.title}
-                          className="object-cover"
+                          className="object-contain"
                           fill
                         />
                       </div>
