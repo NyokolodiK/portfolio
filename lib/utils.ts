@@ -21,3 +21,8 @@ export function calculateYearsSince(
 
   return years;
 }
+
+export const formattedTime = (timestamp: Date) => new Intl.DateTimeFormat("en", {
+    hour: "numeric",
+    minute: "numeric",
+  }).format(timestamp);

@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar styling */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #00FF99;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00cc7a;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #00FF99 rgba(255, 255, 255, 0.05);
+  }
+}
+
 @layer base {
   body {
     @apply font-primary bg-primary text-white leading-loose;

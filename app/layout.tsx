@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import PageTransition from "@/components/layout/PageTransition";
 import StairTransition from "@/components/layout/StairTransition";
+import ChatWrapper from "@/components/chat/ChatWrapper";
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetBrainsMono",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <Header />
         <StairTransition />
         <PageTransition>{children}</PageTransition>
+        <ChatWrapper />
       </body>
     </html>
   );
