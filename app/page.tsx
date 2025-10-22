@@ -6,16 +6,16 @@ import { FiDownload } from "react-icons/fi";
 
 const Home = () => {
   return (
-    <section className="h-full">
+    <section className="h-full" itemScope itemType="https://schema.org/Person">
       <div className="container mx-auto h-full">
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl">Senior Software Engineer</span>
+            <span className="text-xl" itemProp="jobTitle">Senior Software Engineer</span>
             <h1 className="h1 mb-6">
               Hello I&apos;m <br />{" "}
-              <span className="text-accent">Kagiso Nyokolodi</span>
+              <span className="text-accent" itemProp="name">Kagiso Nyokolodi</span>
             </h1>
-            <p className="max-w-[500px] mb-9 text-white/80">
+            <p className="max-w-[500px] mb-9 text-white/80" itemProp="description">
               I’m a Senior Software Engineer specializing in designing and
               building scalable systems. I lead teams, mentor peers, and focus
               on delivering efficient, high-quality software solutions.

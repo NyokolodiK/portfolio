@@ -4,11 +4,11 @@ import { FaLinkedinIn, FaGithub, FaYoutube } from "react-icons/fa";
 const socials = [
   {
     icon: <FaLinkedinIn />,
-    link: "https://linkedin.com",
+    link: "https://www.linkedin.com/in/kagiso-nyokolodi/",
   },
   {
     icon: <FaGithub />,
-    link: "https://github.com",
+    link: "https://github.com/NyokolodiK",
   },
   {
     icon: <FaYoutube />,
