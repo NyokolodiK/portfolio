@@ -4,6 +4,7 @@ import { cn, formattedTime } from "@/lib/utils";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { memo } from "react";
 
 type ChatMessageProps = {
   message: string;
@@ -11,7 +12,7 @@ type ChatMessageProps = {
   timestamp: Date;
 };
 
-export default function ChatMessage({
+function ChatMessage({
   message,
   isUser,
   timestamp,
@@ -93,3 +94,5 @@ export default function ChatMessage({
     </motion.div>
   );
 }
+
+export default memo(ChatMessage);

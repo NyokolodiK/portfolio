@@ -1,43 +1,16 @@
 "use client";
 
-import { calculateYearsSince } from "@/lib/utils";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import { Briefcase, FolderGit2, Code2, GitCommit } from "lucide-react";
+import { memo } from "react";
+import { statsData } from "@/data/stats";
 
-const stats = [
-  {
-    name: "Years of Experience",
-    value: calculateYearsSince(2013, 4),
-    icon: Briefcase,
-    suffix: "+",
-  },
-  {
-    name: "Projects Completed",
-    value: 50,
-    icon: FolderGit2,
-    suffix: "+",
-  },
-  {
-    name: "Technologies Mastered",
-    value: 10,
-    icon: Code2,
-    suffix: "+",
-  },
-  {
-    name: "Code Commits",
-    value: 1000,
-    icon: GitCommit,
-    suffix: "+",
-  },
-];
-
-const Stats = () => {
+function Stats() {
   return (
     <section className="pt-12 pb-12 xl:pt-8 xl:pb-16">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((stat, index) => {
+          {statsData.items.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
@@ -95,6 +68,6 @@ const Stats = () => {
       </div>
     </section>
   );
-};
+}
 
-export default Stats;
+export default memo(Stats);
