@@ -12,7 +12,7 @@ export default function StructuredData() {
       'https://github.com/NyokolodiK',
       'https://twitter.com/kagiso_nyokolodi',
     ],
-    jobTitle: 'Senior Software Engineer',
+    jobTitle: 'Principal Front End Engineer AI Enthusiast',
     worksFor: {
       '@type': 'Organization',
       name: 'NTT DATA, Inc.',
@@ -40,7 +40,7 @@ export default function StructuredData() {
       'Team Leadership',
     ],
     description:
-      'Results-driven Senior Frontend Engineer with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, and scalable system design.',
+      'Results-driven Principal Front End Engineer and AI enthusiast with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, AI integration, and scalable system design.',
   }
 
   const websiteStructuredData = {
@@ -49,7 +49,7 @@ export default function StructuredData() {
     name: 'Kagiso Nyokolodi Portfolio',
     url: 'https://www.kagiso-nyokolodi.dev',
     description:
-      'Professional portfolio of Kagiso Nyokolodi, a Senior Software Engineer specializing in frontend development and scalable systems.',
+      'Professional portfolio of Kagiso Nyokolodi, a Principal Front End Engineer and AI enthusiast specializing in frontend development, AI integration, and scalable systems.',
     author: {
       '@type': 'Person',
       name: 'Kagiso Nyokolodi',

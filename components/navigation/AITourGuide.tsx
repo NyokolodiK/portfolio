@@ -16,7 +16,7 @@ const TOUR_STEPS: { [key: string]: TourStep[] } = {
   "/": [
     {
       title: "Welcome to my portfolio!",
-      description: "I'm Kagiso, a Senior Software Engineer. Let me show you around.",
+      description: "I'm Kagiso, a Principal Front End Engineer AI Enthusiast. Let me show you around.",
     },
     {
       title: "AI-Powered Experience",

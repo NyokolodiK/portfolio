@@ -20,7 +20,7 @@ const SEARCH_INDEX: SearchResult[] = [
   { title: "Contact", description: "Get in touch with me", url: "/contact", type: "page" },
   { title: "React Expertise", description: "7+ years building React applications", url: "/work", type: "skill" },
   { title: "Next.js Projects", description: "Modern full-stack applications", url: "/projects", type: "project" },
-  { title: "NTT Experience", description: "Senior Software Engineer role", url: "/work", type: "experience" },
+  { title: "NTT Experience", description: "Principal Front End Engineer role", url: "/work", type: "experience" },
   { title: "Healthcare Patient Management", description: "Full-stack healthcare app", url: "/projects", type: "project" },
   { title: "TypeScript Development", description: "Type-safe application development", url: "/work", type: "skill" },
 ];

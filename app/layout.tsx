@@ -17,17 +17,19 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kagiso-nyokolodi.dev'),
   title: {
-    default: 'Kagiso Nyokolodi | Senior Software Engineer Portfolio',
+    default: 'Kagiso Nyokolodi | Principal Front End Engineer AI Enthusiast Portfolio',
     template: '%s | Kagiso Nyokolodi'
   },
-  description: 'Results-driven Senior Frontend Engineer with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, and scalable system design. Based in Meredale, Gauteng, South Africa.',
+  description: 'Results-driven Principal Front End Engineer and AI enthusiast with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, AI integration, and scalable system design. Based in Meredale, Gauteng, South Africa.',
   keywords: [
     'Kagiso Nyokolodi',
-    'Senior Software Engineer',
+    'Principal Front End Engineer',
+    'AI Enthusiast',
     'Frontend Engineer',
     'React Developer',
     'Next.js Developer',
     'TypeScript',
+    'AI Integration',
     'Web Development',
     'Software Engineer South Africa',
     'NTT DATA',
