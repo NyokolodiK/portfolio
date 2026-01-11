@@ -24,14 +24,8 @@ import {
 } from "react-icons/si";
 
 import { motion } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  TooltipProvider,
-  TooltipTrigger,
-  Tooltip,
-  TooltipContent,
-} from "@/components/ui/tooltip";
+import { Briefcase, GraduationCap, Code, User, Sparkles } from "lucide-react";
+import EnhancedSkillCard from "@/components/work/EnhancedSkillCard";
 
 const about = {
   title: "About",
@@ -66,6 +60,11 @@ const experience = {
   title: "Experience",
   description: "Work Experience",
   items: [
+    {
+      company: "Nawiri Group",
+      position: "Principal Front-end Engineer, AI Enthusiast",
+      duration: "2022 – Present",
+    },
     {
       company: "NTT",
       position: "Senior Software Engineer",
@@ -207,125 +206,196 @@ const Resume = () => {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 2.4, duration: 0.6, ease: "easeIn" },
+        transition: { delay: 0.2, duration: 0.6, ease: "easeIn" },
       }}
-      className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0"
+      className="min-h-screen py-12 xl:py-24"
     >
       <div className="container mx-auto">
-        <Tabs
-          defaultValue="experience"
-          className="flex flex-col xl:flex-row gap-[60px]"
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-center mb-16"
         >
-          <TabsList className="flex flex-col gap-6 w-full max-w-[380px] mx-auto xl:mx-0">
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="about">About me</TabsTrigger>
-          </TabsList>
-
-          <div className="min-h-[70vh] w-full">
-            <TabsContent value="experience">
-              <div className="flex flex-col items-center justify-center gap-[30px] text-center">
-                <h3 className="text-4xl">{experience.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto">
-                  {experience.description}
-                </p>
-                <ScrollArea className="h-[400px] w-full">
-                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] items-center">
-                    {experience.items.map((item, index) => (
-                      <li
-                        key={index}
-                        className="flex flex-col bg-[#232329] h-[184px] py-6 px-10 justify-center items-center gap-1"
-                      >
-                        <p className="text-sm font-semibold text-white">
-                          {item.company}
-                        </p>
-                        <h3 className="text-lg max-w-[260px] min-h-[60px] text-white/60">
-                          {item.position}
-                        </h3>
-                        <p className="text-accent text-sm">{item.duration}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </ScrollArea>
-              </div>
-            </TabsContent>
-            <TabsContent value="education">
-              <div className="flex flex-col items-center justify-center gap-[30px] text-center">
-                <h3 className="text-4xl">{education.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto">
-                  {education.description}
-                </p>
-                <ScrollArea className="h-[400px] w-full">
-                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] items-center">
-                    {education.items.map((item, index) => (
-                      <li
-                        key={index}
-                        className="flex flex-col bg-[#232329] h-[184px] py-6 px-10 justify-center items-center gap-1"
-                      >
-                        <p className="text-sm font-semibold text-white">
-                          {item.institution}
-                        </p>
-                        <h3 className="text-lg max-w-[260px] min-h-[60px] text-white/60">
-                          {item.degree}
-                        </h3>
-                        <p className="text-accent text-sm">{item.duration}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </ScrollArea>
-              </div>
-            </TabsContent>
-            <TabsContent value="skills" className="w-full h-full">
-              <div className="flex flex-col gap-[30px]">
-                <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                  <h3 className="text-4xl font-bold">{skills.title}</h3>
-                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                    {skills.description}
-                  </p>
-                  <ScrollArea className="h-[400px] w-full">
-                    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:gap-[30px] gap-4">
-                      {skills.items.map((item, index) => (
-                        <li key={index}>
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger className="w-full h-[150px] bg-[#232329] flex items-center justify-center group">
-                                <div className="text-6xl group-hover:text-accent transition-all duration-300 ">
-                                  {item.icon}
-                                </div>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>{item.title}</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </li>
-                      ))}
-                    </ul>
-                  </ScrollArea>
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent
-              value="about"
-              className="w-full text-center xl:text-left"
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ repeat: Infinity, duration: 2 }}
             >
-              <div className="flex flex-col gap-[30px]">
-                <h3 className="text-4xl font-bold">{about.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {about.description}
-                </p>
-                <ul className="grid gird-cols-1 gapy-6">
-                  {about.info.map((item, index) => (
-                    <li key={index}>
-                      <span>{item.title}</span>: <span>{item.description}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </TabsContent>
+              <Sparkles className="h-6 w-6 text-accent" />
+            </motion.div>
+            <span className="text-accent font-semibold uppercase tracking-wider">Resume</span>
           </div>
-        </Tabs>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            My Journey & Expertise
+          </h1>
+          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+            Over a decade of experience building exceptional software solutions. Explore my professional journey, technical skills, and educational background.
+          </p>
+        </motion.div>
+
+        <div className="space-y-20">
+          {/* About Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-accent/10 p-3 rounded-lg">
+                <User className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-white">{about.title}</h2>
+                <p className="text-white/40 text-sm">Who I Am</p>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-[#232329] to-[#1a1a1f] rounded-xl border border-white/10 p-8">
+              <p className="text-white/70 leading-relaxed mb-6 text-lg">
+                {about.description}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {about.info.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white/5 rounded-lg p-4 border border-white/10"
+                  >
+                    <p className="text-white/50 text-sm mb-1">{item.title}</p>
+                    <p className="text-white font-medium">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Experience Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-accent/10 p-3 rounded-lg">
+                <Briefcase className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-white">{experience.title}</h2>
+                <p className="text-white/40 text-sm">{experience.description}</p>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {experience.items.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="flex flex-col bg-gradient-to-br from-[#232329] to-[#1a1a1f] min-h-[184px] p-6 justify-center items-center gap-3 rounded-lg border border-white/10 hover:border-accent/30 transition-all group cursor-pointer relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative z-10 text-center w-full">
+                    <p className="text-sm font-semibold text-accent mb-2">
+                      {item.company}
+                    </p>
+                    <h3 className="text-base font-medium text-white group-hover:text-accent transition-colors mb-2 px-4">
+                      {item.position}
+                    </h3>
+                    <div className="flex items-center justify-center gap-2 text-xs text-white/60">
+                      <div className="h-1 w-1 bg-accent rounded-full" />
+                      <p>{item.duration}</p>
+                      <div className="h-1 w-1 bg-accent rounded-full" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Education Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-accent/10 p-3 rounded-lg">
+                <GraduationCap className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-white">{education.title}</h2>
+                <p className="text-white/40 text-sm">{education.description}</p>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {education.items.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="flex flex-col bg-gradient-to-br from-[#232329] to-[#1a1a1f] min-h-[184px] p-6 justify-center items-center gap-3 rounded-lg border border-white/10 hover:border-accent/30 transition-all group cursor-pointer relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative z-10 text-center w-full">
+                    <p className="text-sm font-semibold text-accent mb-2">
+                      {item.institution}
+                    </p>
+                    <h3 className="text-base font-medium text-white group-hover:text-accent transition-colors mb-2 px-4">
+                      {item.degree}
+                    </h3>
+                    <div className="flex items-center justify-center gap-2 text-xs text-white/60">
+                      <div className="h-1 w-1 bg-accent rounded-full" />
+                      <p>{item.duration}</p>
+                      <div className="h-1 w-1 bg-accent rounded-full" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Skills Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-accent/10 p-3 rounded-lg">
+                <Code className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-white">{skills.title}</h2>
+                <p className="text-white/40 text-sm">{skills.description}</p>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {skills.items.map((item, index) => (
+                <EnhancedSkillCard
+                  key={index}
+                  title={item.title}
+                  icon={item.icon}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </motion.section>
   );

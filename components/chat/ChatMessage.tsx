@@ -2,7 +2,8 @@
 
 import { cn, formattedTime } from "@/lib/utils";
 import { motion } from "framer-motion";
-import AnimatedText from "./AnimatedText";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type ChatMessageProps = {
   message: string;
@@ -53,7 +54,38 @@ export default function ChatMessage({
           {isUser ? (
             <p className="text-sm whitespace-pre-wrap">{message}</p>
           ) : (
-            <AnimatedText text={message} className="text-sm whitespace-pre-wrap block" />
+            <div className="text-sm prose prose-invert prose-sm max-w-none">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  a: ({ node, ...props }) => (
+                    <a 
+                      {...props} 
+                      className="text-accent hover:text-accent-hover underline" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    />
+                  ),
+                  code: ({ node, ...props }) => (
+                    <code {...props} className="bg-black/30 px-1 py-0.5 rounded text-accent" />
+                  ),
+                  ul: ({ node, ...props }) => (
+                    <ul {...props} className="list-disc list-inside my-2" />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ol {...props} className="list-decimal list-inside my-2" />
+                  ),
+                  p: ({ node, ...props }) => (
+                    <p {...props} className="my-2" />
+                  ),
+                  strong: ({ node, ...props }) => (
+                    <strong {...props} className="font-bold text-accent" />
+                  ),
+                }}
+              >
+                {message}
+              </ReactMarkdown>
+            </div>
           )}
         </div>
         <span className="text-xs text-white/60 mt-1">{formattedTime(timestamp)}</span>

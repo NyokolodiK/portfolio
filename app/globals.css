@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 160 84% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 217.2 32.6% 17.5%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 160 84% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+  }
+}
+
 /* Custom scrollbar styling */
 @layer base {
   ::-webkit-scrollbar {
@@ -10,6 +30,10 @@
   }
 
   ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
   }
 
@@ -20,16 +44,36 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #00cc7a;
   }
+  
   * {
     scrollbar-width: thin;
+    scrollbar-color: #00FF99 rgba(0, 0, 0, 0.1);
+  }
+
+  .dark * {
     scrollbar-color: #00FF99 rgba(255, 255, 255, 0.05);
   }
 }
 
 @layer base {
   body {
-    @apply font-primary bg-primary text-white leading-loose;
+    @apply font-primary leading-loose transition-colors duration-300;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
+
+  /* Light mode overrides */
+  :root body {
+    background-color: #f5f5f5;
+    color: #1c1c22;
+  }
+
+  /* Dark mode */
+  .dark body {
+    background-color: #1c1c22;
+    color: #ffffff;
+  }
+
   .h1 {
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
   }
@@ -41,6 +85,10 @@
   }
 
   .text-outline {
+    -webkit-text-stroke: 1px currentColor;
+  }
+
+  .dark .text-outline {
     -webkit-text-stroke: 1px #fff;
   }
 

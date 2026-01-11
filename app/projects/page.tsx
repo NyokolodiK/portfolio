@@ -2,11 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
+import { Sparkles, Filter } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -15,8 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import Image from "next/image";
 import Link from "next/link";
-import WorkSliderButtons from "@/components/WorkSliderButtons";
-import { Swiper as SwiperType } from "swiper/types";
+import ProjectInsights from "@/components/projects/ProjectInsights";
 
 const projects = [
   {
@@ -38,6 +34,12 @@ const projects = [
     image: "/images/careconnect.png",
     live: "https://care-connect-seven.vercel.app/",
     github: "https://github.com/NyokolodiK/care-connect",
+    metrics: {
+      complexity: "High",
+      teamSize: 1,
+      duration: "2 months",
+      aiSuggestion: "Excellent showcase of full-stack capabilities with real-time features and SMS integration"
+    },
   },
   {
     num: "02",
@@ -58,6 +60,12 @@ const projects = [
     image: "/images/amazon.png",
     live: "https://amazon-clone-three-alpha-14.vercel.app/",
     github: "https://github.com/NyokolodiK/amazon-clone",
+    metrics: {
+      complexity: "Medium-High",
+      teamSize: 1,
+      duration: "6 weeks",
+      aiSuggestion: "Demonstrates e-commerce expertise with payment integration and state management"
+    },
   },
   {
     num: "03",
@@ -77,6 +85,12 @@ const projects = [
     image: "/images/shuttle.png",
     live: "https://shuttle-client-web-app.vercel.app/",
     github: "https://github.com/NyokolodiK/shuttle-client-web-app",
+    metrics: {
+      complexity: "Medium",
+      teamSize: 1,
+      duration: "1 month",
+      aiSuggestion: "Perfect example of React state management and user authentication implementation"
+    },
   },
   {
     num: "04",
@@ -96,110 +110,228 @@ const projects = [
     image: "/images/cine-scope.png",
     live: "https://cine-scope-pi.vercel.app/",
     github: "https://github.com/NyokolodiK/cine-scope",
+    metrics: {
+      complexity: "Medium",
+      teamSize: 1,
+      duration: "3 weeks",
+      aiSuggestion: "Great demonstration of API integration and data fetching patterns with SWR"
+    },
   },
 ];
 
 const Projects = () => {
-  const [project, setProject] = useState(projects[0]);
-  const handleSlideChange = (swiper: SwiperType) => {
-    setProject(projects[swiper.realIndex]);
-  };
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filters = ["All", "Full Stack", "Frontend", "Backend"];
+
+  const filteredProjects = activeFilter === "All" 
+    ? projects 
+    : projects.filter(project => 
+        project.category.toLowerCase() === activeFilter.toLowerCase()
+      );
 
   return (
     <motion.section
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 2.4, duration: 0.6, ease: "easeIn" },
+        transition: { delay: 0.2, duration: 0.6, ease: "easeIn" },
       }}
-      className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0"
+      className="min-h-screen py-12 xl:py-24"
     >
       <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row ">
-          <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none ">
-            <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
-              {project.num}
-            </div>
-            <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize ">
-              {project.title}
-            </h2>
-            <p className="text-white/60">{project.description}</p>
-            <div className="flex flex-wrap gap-6 mt-6">
-              {project.stack.map((item) => (
-                <div
-                  key={item.name}
-                  className="bg-white/10 hover:bg-white/20 transition-all duration-500 px-4 py-2 rounded flex items-center gap-2 text-accent"
-                >
-                  <span>{item.name}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-6 mt-6">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      className="text-white/60 hover:text-white transition-all duration-500"
-                    >
-                      <BsArrowUpRight className="w-10 h-10 hover:animate-bounce hover:text-accent-hover" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Live preview</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      className="text-white/60 hover:text-white transition-all duration-500"
-                    >
-                      <BsGithub className="w-10 h-10 hover:animate-bounce hover:text-accent " />
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>GitHub repository</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-          </div>
-          <div className="w-full xl:w-[50%] order-1 xl:order-none ">
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={1}
-              className="xl:h-[520px] mb-12"
-              onSlideChange={handleSlideChange}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-center mb-12"
+        >
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
             >
-              {projects.map((project, index) => {
-                return (
-                  <SwiperSlide key={index} className="w-full">
-                    <div className="h-[460px] relative group flex justify-center items-center bg-black/10">
-                      <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          className="object-contain"
-                          fill
-                        />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-              <WorkSliderButtons
-                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 x-20 w-full justify-between xl:w-max xl:justify-none z-50"
-                btnStyles="bg-accent hover:bg-accent-hover text-primary transition-all duration-500  p-2 w-10 h-10 flex items-center justify-center"
-                iconStyles="w-6 h-6"
-              />
-            </Swiper>
+              <BsGithub className="h-6 w-6 text-accent" />
+            </motion.div>
+            <span className="text-accent font-semibold uppercase tracking-wider">Portfolio</span>
           </div>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            Featured Projects
+          </h1>
+          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+            Explore my latest work showcasing modern web technologies, innovative solutions, and best practices in software development.
+          </p>
+        </motion.div>
+
+        {/* Filter Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="flex items-center justify-center gap-4 mb-12 flex-wrap"
+        >
+          <div className="flex items-center gap-2 text-white/60 text-sm">
+            <Filter className="h-4 w-4" />
+            <span>Filter:</span>
+          </div>
+          {filters.map((filter, index) => (
+            <motion.button
+              key={filter}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 + (index * 0.1) }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                activeFilter === filter
+                  ? "bg-accent text-primary shadow-lg shadow-accent/50"
+                  : "bg-white/5 text-white hover:bg-white/10 border border-white/10 hover:border-accent/30"
+              }`}
+            >
+              {filter}
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* Projects Count */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-center mb-8"
+        >
+          <p className="text-white/60 text-sm">
+            Showing <span className="text-accent font-semibold">{filteredProjects.length}</span> {filteredProjects.length === 1 ? 'project' : 'projects'}
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="bg-gradient-to-br from-[#232329] to-[#1a1a1f] rounded-xl border border-white/10 hover:border-accent/30 overflow-hidden transition-all duration-500 h-full flex flex-col">
+                {/* Project Image */}
+                <div className="relative h-[300px] overflow-hidden">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative w-full h-full"
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1f] via-transparent to-transparent opacity-60" />
+                  </motion.div>
+                  
+                  {/* Number Badge */}
+                  <div className="absolute top-4 left-4 text-6xl font-extrabold text-accent/20">
+                    {project.num}
+                  </div>
+
+                  {/* Featured Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="absolute top-4 right-4 bg-accent/90 text-primary px-3 py-1 rounded-full flex items-center gap-2"
+                  >
+                    <Sparkles className="h-3 w-3" />
+                    <span className="text-xs font-semibold">{project.category}</span>
+                  </motion.div>
+
+                  {/* Action Buttons Overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-6">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <motion.a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2, rotate: 5 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="bg-accent text-primary p-4 rounded-full"
+                          >
+                            <BsArrowUpRight className="w-6 h-6" />
+                          </motion.a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Live Demo</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2, rotate: -5 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="bg-white/10 backdrop-blur-sm text-white p-4 rounded-full border border-white/20"
+                          >
+                            <BsGithub className="w-6 h-6" />
+                          </motion.a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Source Code</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+
+                {/* Project Details */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-accent transition-colors mb-3">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-white/60 text-sm mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* AI Insights */}
+                  {project.metrics && (
+                    <div className="mb-4">
+                      <ProjectInsights metrics={project.metrics} stack={project.stack} />
+                    </div>
+                  )}
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.stack.slice(0, 4).map((item, idx) => (
+                      <motion.span
+                        key={item.name}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 + (idx * 0.05) }}
+                        className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full border border-accent/20"
+                      >
+                        {item.name}
+                      </motion.span>
+                    ))}
+                    {project.stack.length > 4 && (
+                      <span className="text-xs text-white/40 px-3 py-1">
+                        +{project.stack.length - 4} more
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.section>

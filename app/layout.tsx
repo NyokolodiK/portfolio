@@ -6,6 +6,7 @@ import PageTransition from "@/components/layout/PageTransition";
 import StairTransition from "@/components/layout/StairTransition";
 import ChatWrapper from "@/components/chat/ChatWrapper";
 import StructuredData from "@/components/StructuredData";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetBrainsMono",
@@ -98,15 +99,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <StructuredData />
       </head>
       <body className={jetBrainsMono.variable}>
-        <Header />
-        <StairTransition />
-        <PageTransition>{children}</PageTransition>
-        <ChatWrapper />
+        <ThemeProvider>
+          <Header />
+          <StairTransition />
+          <PageTransition>{children}</PageTransition>
+          <ChatWrapper />
+        </ThemeProvider>
       </body>
     </html>
   );

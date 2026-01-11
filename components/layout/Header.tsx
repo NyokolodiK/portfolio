@@ -3,6 +3,8 @@ import React from "react";
 import Nav from "./Nav";
 import { Button } from "../ui/button";
 import MobileNav from "./MobileNav";
+import { ThemeToggle } from "../theme/ThemeToggle";
+import AISearch from "../navigation/AISearch";
 
 const Header = () => {
   return (
@@ -15,12 +17,15 @@ const Header = () => {
         </Link>
         <div className="hidden xl:flex items-center gap-8">
           <Nav />
+          <AISearch />
+          <ThemeToggle />
           <Link href="/contact">
             <Button>Hire me</Button>
           </Link>
         </div>
 
-        <div className="xl:hidden">
+        <div className="xl:hidden flex items-center gap-4">
+          <ThemeToggle />
           <MobileNav />
         </div>
       </div>
