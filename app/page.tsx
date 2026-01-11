@@ -66,7 +66,7 @@ const Home = () => {
             >
               <Link href="/contact" className="w-full sm:w-auto">
                 <Button className="w-full sm:w-auto bg-accent hover:bg-accent-hover text-primary font-semibold px-8 py-6 text-base">
-                  Let's Work Together
+                  Let&apos;s Work Together
                   <FiArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>

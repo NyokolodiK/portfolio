@@ -111,10 +111,10 @@ const Contact = () => {
             <span className="text-accent font-semibold uppercase tracking-wider">Contact</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Let's Work Together
+            Let&apos;s Work Together
           </h1>
           <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Have a project in mind? Let's discuss how we can bring your ideas to life with cutting-edge technology.
+            Have a project in mind? Let&apos;s discuss how we can bring your ideas to life with cutting-edge technology.
           </p>
         </motion.div>
 
@@ -134,7 +134,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-white">Send me a message</h3>
               </div>
               <p className="text-white/60 mb-4">
-                Fill out the form below and I'll get back to you as soon as possible
+                Fill out the form below and I&apos;ll get back to you as soon as possible
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
