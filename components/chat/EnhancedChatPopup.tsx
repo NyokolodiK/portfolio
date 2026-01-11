@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-import { Maximize2, Minimize2, Sparkles, History, X } from "lucide-react";
+import { Maximize2, Minimize2, Sparkles, History } from "lucide-react";
 
 type Message = {
   content: string;

@@ -110,7 +110,7 @@ const Services = () => {
               Need a Custom Solution?
             </h3>
             <p className="text-white/70 mb-6 max-w-2xl mx-auto">
-              Every project is unique. Let's discuss your specific requirements and create a tailored solution that exceeds expectations.
+              Every project is unique. Let&apos;s discuss your specific requirements and create a tailored solution that exceeds expectations.
             </p>
             <motion.a
               href="/contact"

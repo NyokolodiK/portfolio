@@ -11,7 +11,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Image from "next/image";
-import Link from "next/link";
 import ProjectInsights from "@/components/projects/ProjectInsights";
 
 const projects = [

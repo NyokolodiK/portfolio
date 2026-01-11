@@ -59,7 +59,7 @@ function ChatMessage({
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  a: ({ node, ...props }) => (
+                  a: ({ ...props }) => (
                     <a 
                       {...props} 
                       className="text-accent hover:text-accent-hover underline" 
@@ -67,19 +67,19 @@ function ChatMessage({
                       rel="noopener noreferrer"
                     />
                   ),
-                  code: ({ node, ...props }) => (
+                  code: ({ ...props }) => (
                     <code {...props} className="bg-black/30 px-1 py-0.5 rounded text-accent" />
                   ),
-                  ul: ({ node, ...props }) => (
+                  ul: ({ ...props }) => (
                     <ul {...props} className="list-disc list-inside my-2" />
                   ),
-                  ol: ({ node, ...props }) => (
+                  ol: ({ ...props }) => (
                     <ol {...props} className="list-decimal list-inside my-2" />
                   ),
-                  p: ({ node, ...props }) => (
+                  p: ({ ...props }) => (
                     <p {...props} className="my-2" />
                   ),
-                  strong: ({ node, ...props }) => (
+                  strong: ({ ...props }) => (
                     <strong {...props} className="font-bold text-accent" />
                   ),
                 }}
