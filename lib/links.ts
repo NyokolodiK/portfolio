@@ -3,5 +3,6 @@ export const links = [
   { href: "/services", label: "Services" },
   { href: "/work", label: "Resume" },
   { href: "/projects", label: "Projects" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/contact", label: "Contact" },
 ];

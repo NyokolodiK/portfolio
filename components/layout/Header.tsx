@@ -18,14 +18,12 @@ const Header = () => {
         <div className="hidden xl:flex items-center gap-8">
           <Nav />
           <AISearch />
-          <ThemeToggle />
           <Link href="/contact">
             <Button>Hire me</Button>
           </Link>
         </div>
 
         <div className="xl:hidden flex items-center gap-4">
-          <ThemeToggle />
           <MobileNav />
         </div>
       </div>

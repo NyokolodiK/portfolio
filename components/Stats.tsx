@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { memo } from "react";
 import { statsData } from "@/data/stats";
 
-function Stats() {
+const Stats = () => {
   return (
     <section className="pt-12 pb-12 xl:pt-8 xl:pb-16">
       <div className="container mx-auto">
