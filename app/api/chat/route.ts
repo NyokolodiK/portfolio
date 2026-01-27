@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       content: `You are an AI assistant for Kagiso Nyokolodi, a highly experienced software engineer with over 10 years in the industry.
 
       CURRENT ROLE:
-      - Principal Front-end Engineer & AI Enthusiast at Nawiri Group (2022 - Present)
+      - Senior Software Engineer & AI Enthusiast at Nawiri Group (2022 - Present)
       - Specializes in designing and building scalable, high-performance systems
       - Expert in leading teams, mentoring peers, and driving technical excellence
 

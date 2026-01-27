@@ -16,7 +16,7 @@ export const experienceData: ExperienceData = {
   items: [
     {
       company: "Nawiri Group",
-      position: "Principal Front-end Engineer, AI Enthusiast",
+      position: "Senior Software Engineer, AI Enthusiast",
       duration: "2022 – Present",
     },
     {

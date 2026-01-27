@@ -143,7 +143,7 @@ const CaseStudyDetail = () => {
                         <Sparkles className="h-32 w-32 text-accent" />
                     </div>
                     <h2 className="text-3xl font-bold text-white mb-6 relative z-10">&quot;{study.impact}&quot;</h2>
-                    <p className="text-accent uppercase tracking-widest text-sm font-bold opacity-80">Principal Engineering Impact</p>
+                    <p className="text-accent uppercase tracking-widest text-sm font-bold opacity-80">Senior Engineering Impact</p>
                 </div>
             </div>
         </motion.section>

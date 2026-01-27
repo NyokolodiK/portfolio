@@ -62,7 +62,7 @@ const experience = {
   items: [
     {
       company: "Nawiri Group",
-      position: "Principal Front-end Engineer, AI Enthusiast",
+      position: "Senior Software Engineer, AI Enthusiast",
       duration: "2022 – Present",
     },
     {
@@ -251,7 +251,7 @@ const Resume = () => {
                 <p className="text-white/40 text-sm">Who I Am</p>
               </div>
             </div>
-            
+
             <div className="bg-gradient-to-br from-[#232329] to-[#1a1a1f] rounded-xl border border-white/10 p-8">
               <p className="text-white/70 leading-relaxed mb-6 text-lg">
                 {about.description}
@@ -290,7 +290,7 @@ const Resume = () => {
                 <p className="text-white/40 text-sm">{experience.description}</p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {experience.items.map((item, index) => (
                 <motion.div
@@ -337,7 +337,7 @@ const Resume = () => {
                 <p className="text-white/40 text-sm">{education.description}</p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {education.items.map((item, index) => (
                 <motion.div
@@ -384,7 +384,7 @@ const Resume = () => {
                 <p className="text-white/40 text-sm">{skills.description}</p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {skills.items.map((item, index) => (
                 <EnhancedSkillCard

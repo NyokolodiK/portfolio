@@ -17,7 +17,7 @@ const Home = () => {
         {/* Hero Section */}
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-16 xl:pb-24 py-12 gap-16">
           {/* Left Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -31,10 +31,10 @@ const Home = () => {
                 className="text-accent font-medium tracking-wider uppercase text-sm"
                 itemProp="jobTitle"
               >
-                Principal Software Engineer
+                Senior Software Engineer
               </motion.p>
 
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -46,11 +46,11 @@ const Home = () => {
                 </span>
               </motion.h1>
 
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-xl text-white/70 leading-relaxed max-w-[600px] mx-auto xl:mx-0" 
+                className="text-xl text-white/70 leading-relaxed max-w-[600px] mx-auto xl:mx-0"
                 itemProp="description"
               >
                 Building scalable systems and leading teams to deliver efficient, high-quality software solutions.
@@ -58,7 +58,7 @@ const Home = () => {
             </div>
 
             {/* CTA Buttons */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -94,7 +94,7 @@ const Home = () => {
           </motion.div>
 
           {/* Right Content - 3D Photo */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}

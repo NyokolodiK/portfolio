@@ -20,7 +20,7 @@ const SEARCH_INDEX: SearchResult[] = [
   { title: "Contact", description: "Get in touch with me", url: "/contact", type: "page" },
   { title: "React Expertise", description: "7+ years building React applications", url: "/work", type: "skill" },
   { title: "Next.js Projects", description: "Modern full-stack applications", url: "/projects", type: "project" },
-  { title: "NTT Experience", description: "Principal Front End Engineer role", url: "/work", type: "experience" },
+  { title: "NTT Experience", description: "Senior Software Engineer role", url: "/work", type: "experience" },
   { title: "Healthcare Patient Management", description: "Full-stack healthcare app", url: "/projects", type: "project" },
   { title: "TypeScript Development", description: "Type-safe application development", url: "/work", type: "skill" },
 ];
@@ -166,11 +166,10 @@ export default function AISearch() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
                         onClick={() => handleSelect(result)}
-                        className={`w-full text-left p-3 rounded-lg transition-all flex items-center gap-3 ${
-                          index === selectedIndex
+                        className={`w-full text-left p-3 rounded-lg transition-all flex items-center gap-3 ${index === selectedIndex
                             ? "bg-accent/20 border border-accent/40"
                             : "hover:bg-white/5 border border-transparent"
-                        }`}
+                          }`}
                       >
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">

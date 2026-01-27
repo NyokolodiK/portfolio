@@ -17,13 +17,13 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kagiso-nyokolodi.dev'),
   title: {
-    default: 'Kagiso Nyokolodi | Principal Front End Engineer AI Enthusiast Portfolio',
+    default: 'Kagiso Nyokolodi | Senior Software Engineer AI Enthusiast Portfolio',
     template: '%s | Kagiso Nyokolodi'
   },
-  description: 'Results-driven Principal Front End Engineer and AI enthusiast with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, AI integration, and scalable system design. Based in Meredale, Gauteng, South Africa.',
+  description: 'Results-driven Senior Software Engineer and AI enthusiast with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, AI integration, and scalable system design. Based in Meredale, Gauteng, South Africa.',
   keywords: [
     'Kagiso Nyokolodi',
-    'Principal Front End Engineer',
+    'Senior Software Engineer',
     'AI Enthusiast',
     'Frontend Engineer',
     'React Developer',
@@ -51,21 +51,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.kagiso-nyokolodi.dev',
     siteName: 'Kagiso Nyokolodi Portfolio',
-    title: 'Kagiso Nyokolodi | Principal Front End Engineer',
-    description: 'Results-driven Principal Front End Engineer specializing in building high-performance web applications with React, Next.js, and TypeScript.',
+    title: 'Kagiso Nyokolodi | Senior Software Engineer',
+    description: 'Results-driven Senior Software Engineer specializing in building high-performance web applications with React, Next.js, and TypeScript.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Kagiso Nyokolodi - Principal Front End Engineer',
+        alt: 'Kagiso Nyokolodi - Senior Software Engineer',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kagiso Nyokolodi | Principal Front End Engineer',
-    description: 'Results-driven Principal Front End Engineer specializing in building high-performance web applications.',
+    title: 'Kagiso Nyokolodi | Senior Software Engineer',
+    description: 'Results-driven Senior Software Engineer specializing in building high-performance web applications.',
     images: ['/og-image.png'],
     creator: '@kagiso_nyokolodi',
   },
