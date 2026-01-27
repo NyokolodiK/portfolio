@@ -71,7 +71,7 @@ const Home = () => {
                 </Button>
               </Link>
 
-              <a href="/cv/Kagiso_Nyokolodi_CV.pdf" download="Kagiso_Nyokolodi_CV.pdf" className="w-full sm:w-auto">
+              <a href="/Kagiso_Nyokolodi_CV.docx" download="Kagiso_Nyokolodi_CV.docx" className="w-full sm:w-auto">
                 <Button variant="outlined" className="w-full sm:w-auto px-8 py-6 text-base">
                   <FiDownload className="mr-2 h-5 w-5" />
                   Download CV
