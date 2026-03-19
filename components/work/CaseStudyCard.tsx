@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CaseStudy } from "@/data/case-studies";
 import { BookOpen, ChevronRight, TrendingUp, Cpu, RefreshCcw } from "lucide-react";
 import Link from "next/link";
 
 interface CaseStudyCardProps {
-    caseStudy: CaseStudy;
+    caseStudy: any;
     index: number;
 }
 
@@ -56,7 +55,7 @@ const CaseStudyCard = ({ caseStudy, index }: CaseStudyCardProps) => {
                     {/* Metrics Grid */}
                     {caseStudy.metrics && (
                         <div className="grid grid-cols-3 gap-4 mb-8">
-                            {caseStudy.metrics.map((metric, idx) => (
+                            {caseStudy.metrics.map((metric: { value: string, label: string }, idx: number) => (
                                 <div key={idx} className="text-center p-3 bg-white/5 rounded-lg border border-white/5">
                                     <p className="text-accent font-bold text-lg">{metric.value}</p>
                                     <p className="text-[10px] uppercase tracking-tighter text-white/40">{metric.label}</p>
@@ -67,12 +66,12 @@ const CaseStudyCard = ({ caseStudy, index }: CaseStudyCardProps) => {
 
                     {/* Tech Stack Bubbles */}
                     <div className="flex flex-wrap gap-2 mb-8 lowercase">
-                        {caseStudy.techStack.slice(0, 4).map((tech, idx) => (
+                        {caseStudy.techStack?.slice(0, 4).map((tech: string, idx: number) => (
                             <span key={idx} className="text-[10px] bg-white/5 text-white/50 px-2 py-1 rounded-md border border-white/10">
                                 {tech}
                             </span>
                         ))}
-                        {caseStudy.techStack.length > 4 && (
+                        {caseStudy.techStack?.length > 4 && (
                             <span className="text-[10px] text-white/30 px-2 py-1">
                                 +{caseStudy.techStack.length - 4} more
                             </span>

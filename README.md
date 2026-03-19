@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Professional Portfolio | Next.js 15 & Sanity CMS
 
-## Getting Started
+A high-performance, fully dynamic portfolio built with the latest web technologies. This project features a seamless integration between Next.js 15 (Server Components) and Sanity CMS, providing a modern architecture for content management and rapid delivery.
 
-First, run the development server:
+## 🚀 Teck Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router, Server Components)
+- **CMS**: [Sanity.io](https://www.sanity.io/) (Headless CMS)
+- **Styling**: Tailwind CSS & Framer Motion (Animations)
+- **Icons**: Lucide React & React Icons
+- **Deployment**: Optimized for Vercel
+
+## ✨ Key Features
+
+- **SSR & ISR**: Server-Side Rendering for dynamic data and Incremental Static Regeneration (1-hour revalidation) for static pages to ensure performance and SEO.
+- **Integrated CMS**: Manage Projects, Case Studies, Services, Profile, and Resume details directly through the built-in [Sanity Studio](/studio).
+- **Dynamic Metadata**: Automatic SEO optimization for all pages.
+- **Glassmorphic Design**: Modern, premium UI with smooth animations and interactive 3D elements.
+- **Responsive**: Fully optimized for all device sizes.
+
+## 🛠️ Getting Started
+
+### 1. Environment Setup
+
+Create a `.env` file in the root directory and add the following:
+
+```env
+# Sanity Configuration
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id_here
+NEXT_PUBLIC_SANITY_DATASET=production
+
+# Write token for migration (internal use)
+SANITY_API_WRITE_TOKEN=your_write_token_here
+
+# Email Configuration (Nodemailer)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+```
+
+### 2. Installation
+
+```bash
+npm install
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit:
+- Website: [http://localhost:3000](http://localhost:3000)
+- Sanity Studio: [http://localhost:3000/studio](http://localhost:3000/studio)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Production Readiness
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To build the project for production:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+This will:
+1. Validate TypeScript types.
+2. Prerender static pages (Home, Services, etc.).
+3. Optimize images and assets.
+4. Prepare the dynamic server routes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Final Verification Checklist
+- [x] All hardcoded data migrated to Sanity.
+- [x] Images configured for `cdn.sanity.io`.
+- [x] Server Components implemented for all data-fetching routes.
+- [x] Metadata optimized for SEO.
+- [x] Build successfully passes type-checking and prerendering.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT](LICENSE)

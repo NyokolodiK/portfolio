@@ -2,16 +2,25 @@
 
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import { memo } from "react";
-import { statsData } from "@/data/stats";
+import { memo, ReactNode } from "react";
+import * as LucideIcons from "lucide-react";
 
-const Stats = () => {
+interface StatsProps {
+  stats: {
+    name: string;
+    value: number;
+    suffix: string;
+    iconName: string;
+  }[];
+}
+
+const Stats = ({ stats = [] }: StatsProps) => {
   return (
     <section className="pt-12 pb-12 xl:pt-8 xl:pb-16">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {statsData.items.map((stat, index) => {
-            const Icon = stat.icon;
+          {stats.map((stat, index) => {
+            const Icon = (LucideIcons as any)[stat.iconName] || LucideIcons.Code2;
             return (
               <motion.div
                 key={index}

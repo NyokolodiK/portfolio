@@ -1,31 +1,28 @@
 import Link from "next/link";
-import { FaLinkedinIn, FaGithub, FaYoutube } from "react-icons/fa";
+import * as FaIcons from "react-icons/fa";
+import { ReactNode } from "react";
 
-const socials = [
-  {
-    icon: <FaLinkedinIn />,
-    link: "https://www.linkedin.com/in/kagiso-nyokolodi/",
-  },
-  {
-    icon: <FaGithub />,
-    link: "https://github.com/NyokolodiK",
-  },
-  {
-    icon: <FaYoutube />,
-    link: "https://youtube.com",
-  },
-];
+const ICON_MAP: Record<string, ReactNode> = {
+  FaLinkedinIn: <FaIcons.FaLinkedinIn />,
+  FaGithub: <FaIcons.FaGithub />,
+  FaYoutube: <FaIcons.FaYoutube />,
+};
 
 type SocialProps = {
   iconStyles: string;
   containerStyles: string;
+  socials: {
+    platform: string;
+    url: string;
+    iconName: string;
+  }[];
 };
-const Social = ({ iconStyles, containerStyles }: SocialProps) => {
+const Social = ({ iconStyles, containerStyles, socials = [] }: SocialProps) => {
   return (
     <div className={containerStyles}>
       {socials.map((social) => (
-        <Link href={social.link} key={social.link} className={iconStyles}>
-          {social.icon}
+        <Link href={social.url} key={social.url} className={iconStyles} target="_blank" rel="noopener noreferrer">
+          {ICON_MAP[social.iconName] || <FaIcons.FaGithub />}
         </Link>
       ))}
     </div>

@@ -4,6 +4,29 @@ import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Sparkles, TrendingUp } from "lucide-react";
 import { ReactNode, useState } from "react";
+import * as FaIcons from "react-icons/fa";
+import * as SiIcons from "react-icons/si";
+
+const ICON_MAP: { [key: string]: ReactNode } = {
+  FaHtml5: <FaIcons.FaHtml5 />,
+  FaCss3: <FaIcons.FaCss3 />,
+  FaJs: <FaIcons.FaJs />,
+  FaReact: <FaIcons.FaReact />,
+  FaNodeJs: <FaIcons.FaNodeJs />,
+  FaVuejs: <FaIcons.FaVuejs />,
+  FaAngular: <FaIcons.FaAngular />,
+  SiTypescript: <SiIcons.SiTypescript />,
+  SiMongodb: <SiIcons.SiMongodb />,
+  SiTailwindcss: <SiIcons.SiTailwindcss />,
+  SiNextdotjs: <SiIcons.SiNextdotjs />,
+  SiPrisma: <SiIcons.SiPrisma />,
+  SiPostgresql: <SiIcons.SiPostgresql />,
+  SiGraphql: <SiIcons.SiGraphql />,
+  SiExpress: <SiIcons.SiExpress />,
+  SiMysql: <SiIcons.SiMysql />,
+  SiRubyonrails: <SiIcons.SiRubyonrails />,
+  SiNestjs: <SiIcons.SiNestjs />,
+};
 
 interface SkillProficiency {
   yearsOfExperience: number;
@@ -15,7 +38,7 @@ interface SkillProficiency {
 
 interface EnhancedSkillCardProps {
   title: string;
-  icon: ReactNode;
+  iconName: string;
   proficiency?: SkillProficiency;
 }
 
@@ -71,9 +94,10 @@ const DEFAULT_PROFICIENCIES: { [key: string]: SkillProficiency } = {
   },
 };
 
-export default function EnhancedSkillCard({ title, icon, proficiency }: EnhancedSkillCardProps) {
+export default function EnhancedSkillCard({ title, iconName, proficiency }: EnhancedSkillCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const skillData = proficiency || DEFAULT_PROFICIENCIES[title];
+  const Icon = ICON_MAP[iconName] || <SiIcons.SiNextdotjs />;
 
   return (
     <TooltipProvider>
@@ -90,12 +114,12 @@ export default function EnhancedSkillCard({ title, icon, proficiency }: Enhanced
               className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100"
               transition={{ duration: 0.3 }}
             />
-            
-            <motion.div 
+
+            <motion.div
               className="text-6xl group-hover:text-accent transition-all duration-300 relative z-10"
               animate={isHovered ? { y: -10, scale: 1.1 } : { y: 0, scale: 1 }}
             >
-              {icon}
+              {Icon}
             </motion.div>
 
             {skillData && (

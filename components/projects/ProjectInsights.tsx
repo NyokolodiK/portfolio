@@ -8,9 +8,9 @@ interface ProjectInsightsProps {
     complexity: string;
     teamSize: number;
     duration: string;
-    aiSuggestion: string;
+    aiSuggestion?: string;
   };
-  stack: { name: string }[];
+  stack: string[];
 }
 
 export default function ProjectInsights({ metrics, stack }: ProjectInsightsProps) {
@@ -71,16 +71,18 @@ export default function ProjectInsights({ metrics, stack }: ProjectInsightsProps
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="pt-3 border-t border-accent/10"
-      >
-        <p className="text-xs text-white/70 italic leading-relaxed">
-          &quot;{metrics.aiSuggestion}&quot;
-        </p>
-      </motion.div>
+      {metrics.aiSuggestion && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="pt-3 border-t border-accent/10"
+        >
+          <p className="text-xs text-white/70 italic leading-relaxed">
+            &quot;{metrics.aiSuggestion}&quot;
+          </p>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

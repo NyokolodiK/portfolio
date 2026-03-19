@@ -1,4 +1,4 @@
-import { ContactFormData } from "@/app/contact/page";
+import { ContactFormData } from "@/components/contact/ContactClient";
 import nodemailer from "nodemailer";
 
 
@@ -28,9 +28,8 @@ export async function POST(req: Request): Promise<Response> {
         <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
           <p style="font-size: 16px; color: #4a5568; margin-bottom: 10px;"><strong>Name:</strong> ${name} ${surname}</p>
           <p style="font-size: 16px; color: #4a5568; margin-bottom: 10px;"><strong>Email:</strong> ${email}</p>
-          <p style="font-size: 16px; color: #4a5568; margin-bottom: 10px;"><strong>Phone:</strong> ${
-            phone || "Not provided"
-          }</p>
+          <p style="font-size: 16px; color: #4a5568; margin-bottom: 10px;"><strong>Phone:</strong> ${phone || "Not provided"
+      }</p>
           <p style="font-size: 16px; color: #4a5568; margin-bottom: 10px;"><strong>Message:</strong></p>
           <p style="font-size: 16px; color: #4a5568; white-space: pre-wrap;">${message}</p>
         </div>
