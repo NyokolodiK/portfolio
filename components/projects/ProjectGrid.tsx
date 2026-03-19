@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/tooltip";
 import Image from "next/image";
 import ProjectInsights from "@/components/projects/ProjectInsights";
-import { urlFor } from "@/sanity/lib/client";
 
 interface ProjectGridProps {
     initialProjects: any[];
@@ -121,9 +120,9 @@ const ProjectGrid = ({ initialProjects = [] }: ProjectGridProps) => {
                                         transition={{ duration: 0.5 }}
                                         className="relative w-full h-full"
                                     >
-                                        {project.image ? (
+                                        {project.imageUrl ? (
                                             <Image
-                                                src={urlFor(project.image).url()}
+                                                src={project.imageUrl}
                                                 alt={project.title}
                                                 fill
                                                 className="object-cover"

@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { client, urlFor } from "@/sanity/lib/client";
 import { ALL_PROJECTS_QUERY } from "@/sanity/lib/queries";
 import ProjectGrid from "@/components/projects/ProjectGrid";
 import { Metadata } from "next";
@@ -14,5 +14,11 @@ export const revalidate = 3600;
 export default async function ProjectsPage() {
   const projects = await client.fetch(ALL_PROJECTS_QUERY);
 
-  return <ProjectGrid initialProjects={projects} />;
+  // Pre-generate image URLs on the server so we don't need private env vars on the client
+  const projectsWithUrls = projects.map((project: any) => ({
+    ...project,
+    imageUrl: project.image ? urlFor(project.image).url() : null
+  }));
+
+  return <ProjectGrid initialProjects={projectsWithUrls} />;
 }

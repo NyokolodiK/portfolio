@@ -23,5 +23,8 @@ export default async function HomePage() {
     socials: [],
   };
 
+  // Note: Profile doesn't currently have an image that needs urlFor in the client, 
+  // but if it did, we would resolve it here.
+  
   return <HomeClient profile={profile || defaultProfile} />;
 }
