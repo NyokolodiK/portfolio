@@ -7,9 +7,10 @@ import {
 } from "@/sanity/lib/queries";
 import WorkClient from "@/components/work/WorkClient";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Resume | Kagiso Nyokolodi",
+  title: "Resume | Portfolio - Kagiso Nyokolodi",
   description: "Professional experience, education, and technical skills of Kagiso Nyokolodi, Senior Software Engineer.",
 };
 
@@ -24,14 +25,18 @@ export default async function WorkPage() {
     client.fetch(ALL_SKILLS_QUERY),
   ]);
 
+  if (!profile) {
+    notFound();
+  }
+
   const mappedAbout = {
     title: "About",
-    description: profile?.description || "",
+    description: profile.description || "",
     info: [
-      { title: "Name", description: profile?.name || "" },
-      { title: "Location", description: profile?.location || "" },
-      { title: "Email", description: profile?.email || "" },
-      { title: "Phone", description: profile?.phone || "" },
+      { title: "Name", description: profile.name || "" },
+      { title: "Location", description: profile.location || "" },
+      { title: "Email", description: profile.email || "" },
+      { title: "Phone", description: profile.phone || "" },
     ],
   };
 
@@ -43,13 +48,13 @@ export default async function WorkPage() {
 
   const mappedEducation = {
     title: "My Education",
-    description: "BTECH IT Web and Multimedia",
+    description: "Academic Background",
     items: education || [],
   };
 
   const mappedSkills = {
     title: "My Skills",
-    description: "Summary of my skills",
+    description: "Technical Proficiency",
     items: skills || [],
   };
 
