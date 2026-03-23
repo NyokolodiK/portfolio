@@ -5,8 +5,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Kagiso Nyokolodi | Senior Software Engineer",
-  description: "Senior Software Engineer building scalable systems and leading teams to deliver efficient, high-quality software solutions.",
+  title: "Resume | Portfolio - Kagiso Nyokolodi",
+  description: "Professional experience, education, and technical skills of Kagiso Nyokolodi, Principal Frontend Engineer.",
 };
 
 // Revalidate every hour, or use 0 to always fetch live

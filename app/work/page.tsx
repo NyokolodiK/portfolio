@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Resume | Portfolio - Kagiso Nyokolodi",
-  description: "Professional experience, education, and technical skills of Kagiso Nyokolodi, Senior Software Engineer.",
+  description: "Professional experience, education, and technical skills of Kagiso Nyokolodi, Principal Frontend Engineer.",
 };
 
 // Revalidate every hour
