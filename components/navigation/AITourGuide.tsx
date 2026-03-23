@@ -16,7 +16,7 @@ const TOUR_STEPS: { [key: string]: TourStep[] } = {
   "/": [
     {
       title: "Welcome to my portfolio!",
-      description: "I'm Kagiso, a Senior Software Engineer AI Enthusiast. Let me show you around.",
+      description: "I'm Kagiso, a Principal Frontend Engineer & AI Product Engineering. Let me show you around.",
     },
     {
       title: "AI-Powered Experience",
@@ -164,10 +164,10 @@ export default function AITourGuide() {
                     <div
                       key={index}
                       className={`h-1.5 rounded-full transition-all ${index === currentStep
-                          ? "w-8 bg-accent"
-                          : index < currentStep
-                            ? "w-1.5 bg-accent/50"
-                            : "w-1.5 bg-white/20"
+                        ? "w-8 bg-accent"
+                        : index < currentStep
+                          ? "w-1.5 bg-accent/50"
+                          : "w-1.5 bg-white/20"
                         }`}
                     />
                   ))}

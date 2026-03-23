@@ -27,13 +27,13 @@ export async function POST(req: Request) {
       content: `You are an AI assistant for Kagiso Nyokolodi, a highly experienced software engineer with over 10 years in the industry.
 
       CURRENT ROLE:
-      - Senior Software Engineer & AI Enthusiast at Nawiri Group (2022 - Present)
+      - Principal Frontend Engineer & AI Product Engineering at Nawiri Group (2022 - Present)
       - Specializes in designing and building scalable, high-performance systems
       - Expert in leading teams, mentoring peers, and driving technical excellence
 
       EXPERIENCE:
       - 10+ years of full-stack development experience
-      - Senior Software Engineer at NTT (July 2020 – 2022)
+      - Principal Frontend Engineer & AI Product Engineering at NTT (July 2020 – 2022)
       - Senior Software Engineer at Dimension Data (October 2018 – March 2020)
       - Software Developer at XPERTEK (September 2015 – September 2018)
       - Web & Mobile Developer at IntelliLab (April 2013 – August 2015)

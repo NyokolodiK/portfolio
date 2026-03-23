@@ -1,29 +1,17 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import PageTransition from "@/components/layout/PageTransition";
-import StairTransition from "@/components/layout/StairTransition";
-import ChatWrapper from "@/components/chat/ChatWrapper";
 import StructuredData from "@/components/StructuredData";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetBrainsMono",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kagiso-nyokolodi.dev'),
   title: {
-    default: 'Kagiso Nyokolodi | Senior Software Engineer AI Enthusiast Portfolio',
+    default: 'Kagiso Nyokolodi | Principal Frontend Engineer & AI Product Engineering Portfolio',
     template: '%s | Kagiso Nyokolodi'
   },
-  description: 'Results-driven Senior Software Engineer and AI enthusiast with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, AI integration, and scalable system design. Based in Meredale, Gauteng, South Africa.',
+  description: 'Results-driven Principal Frontend Engineer & AI Product Engineering with expertise in building high-performance web applications. Specializing in React, Next.js, TypeScript, AI integration, and scalable system design. Based in Meredale, Gauteng, South Africa.',
   keywords: [
     'Kagiso Nyokolodi',
-    'Senior Software Engineer',
+    'Principal Frontend Engineer & AI Product Engineering',
     'AI Enthusiast',
     'Frontend Engineer',
     'React Developer',
@@ -51,21 +39,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.kagiso-nyokolodi.dev',
     siteName: 'Kagiso Nyokolodi Portfolio',
-    title: 'Kagiso Nyokolodi | Senior Software Engineer',
-    description: 'Results-driven Senior Software Engineer specializing in building high-performance web applications with React, Next.js, and TypeScript.',
+    title: 'Kagiso Nyokolodi | Principal Frontend Engineer & AI Product Engineering',
+    description: 'Results-driven Principal Frontend Engineer & AI Product Engineering specializing in building high-performance web applications with React, Next.js, and TypeScript.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Kagiso Nyokolodi - Senior Software Engineer',
+        alt: 'Kagiso Nyokolodi - Principal Frontend Engineer & AI Product Engineering',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kagiso Nyokolodi | Senior Software Engineer',
-    description: 'Results-driven Senior Software Engineer specializing in building high-performance web applications.',
+    title: 'Kagiso Nyokolodi | Principal Frontend Engineer & AI Product Engineering',
+    description: 'Results-driven Principal Frontend Engineer & AI Product Engineering specializing in building high-performance web applications.',
     images: ['/og-image.png'],
     creator: '@kagiso_nyokolodi',
   },
@@ -105,13 +93,8 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className={jetBrainsMono.variable}>
-        <ThemeProvider>
-          <Header />
-          <StairTransition />
-          <PageTransition>{children}</PageTransition>
-          <ChatWrapper />
-        </ThemeProvider>
+      <body>
+        {children}
       </body>
     </html>
   );
