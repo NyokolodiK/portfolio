@@ -73,5 +73,13 @@ export default defineType({
                 },
             ],
         }),
+        defineField({
+            name: 'resume',
+            title: 'Resume/CV',
+            type: 'file',
+            options: {
+                accept: '.pdf',
+            },
+        }),
     ],
 })

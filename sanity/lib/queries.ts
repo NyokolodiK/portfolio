@@ -64,7 +64,8 @@ export const PROFILE_QUERY = groq`*[_type == "profile"][0] {
   location,
   address,
   stats,
-  socials
+  socials,
+  "resumeUrl": resume.asset->url
 }`
 
 export const ALL_EXPERIENCE_QUERY = groq`*[_type == "experience"] | order(order asc) {

@@ -17,6 +17,7 @@ interface HomeClientProps {
         description: string;
         stats: any[];
         socials: any[];
+        resumeUrl?: string;
     }
 }
 
@@ -81,7 +82,11 @@ const HomeClient = ({ profile }: HomeClientProps) => {
                                 </Button>
                             </Link>
 
-                            <a href="/docs/Kagiso_Nyokolodi_CV.pdf" download="Kagiso_Nyokolodi_CV.pdf" className="w-full sm:w-auto">
+                            <a 
+                                href={profile.resumeUrl || "/docs/Kagiso_Nyokolodi_CV.pdf"} 
+                                download="Kagiso_Nyokolodi_CV.pdf" 
+                                className="w-full sm:w-auto"
+                            >
                                 <Button variant="outlined" className="w-full sm:w-auto px-8 py-6 text-base">
                                     <FiDownload className="mr-2 h-5 w-5" />
                                     Download CV
