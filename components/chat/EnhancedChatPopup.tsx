@@ -10,16 +10,7 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { Maximize2, Minimize2, Sparkles, History, Navigation } from "lucide-react";
 
-type Message = {
-  content: string;
-  isUser: boolean;
-  timestamp: Date;
-};
-
-type ChatMetadata = {
-  action?: { type: "navigate"; path: string } | null;
-  suggestions?: string[];
-};
+// Type definitions removed for plain JavaScript
 
 const INITIAL_MESSAGE: Message = {
   content: "Hi there! 👋 I'm Kagiso's AI assistant. How can I help you today?",
@@ -38,7 +29,7 @@ const FALLBACK_PROMPTS = [
 
 const METADATA_REGEX = /\[METADATA:\s*(\{[\s\S]*?\})\s*\]\s*$/m;
 
-function parseMetadata(raw: string): { cleanContent: string; metadata: ChatMetadata | null } {
+function parseMetadata(raw) {
   const match = raw.match(METADATA_REGEX);
   if (!match) return { cleanContent: raw.trim(), metadata: null };
 
@@ -69,15 +60,15 @@ function deserializeMessages(raw: string): Message[] {
 export default function EnhancedChatPopup() {
   const router = useRouter();
 
-  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
+  const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const [isOpen, setIsOpen] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
-  const [conversationHistory, setConversationHistory] = useState<string[]>([]);
-  const [dynamicSuggestions, setDynamicSuggestions] = useState<string[]>([]);
-  const [pendingNavigation, setPendingNavigation] = useState<{ path: string; label: string } | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [conversationHistory, setConversationHistory] = useState([]);
+  const [dynamicSuggestions, setDynamicSuggestions] = useState([]);
+  const [pendingNavigation, setPendingNavigation] = useState(null);
+  const messagesEndRef = useRef(null);
 
   // --- Persistence: restore chat from sessionStorage on mount ---
   useEffect(() => {

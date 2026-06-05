@@ -1,33 +1,12 @@
 import { useState, useCallback } from "react";
 
-export interface Message {
-  content: string;
-  isUser: boolean;
-  timestamp: Date;
-}
-
-export interface ChatMetadata {
-  action?: { type: "navigate"; path: string } | null;
-  suggestions?: string[];
-}
-
-export interface ParsedResponse {
-  cleanContent: string;
-  metadata: ChatMetadata | null;
-}
-
-const METADATA_REGEX = /\[METADATA:\s*(\{[\s\S]*?\})\s*\]\s*$/m;
-
-/**
- * Strips the [METADATA: {...}] block from the end of an AI response
- * and returns both the clean content and parsed metadata.
- */
-export function parseAIResponse(raw: string): ParsedResponse {
+export function parseAIResponse(raw) {
+  const METADATA_REGEX = /\[METADATA:\s*(\{[\s\S]*?\})\s*\]\s*$/m;
   const match = raw.match(METADATA_REGEX);
   if (!match) return { cleanContent: raw.trim(), metadata: null };
 
   try {
-    const metadata: ChatMetadata = JSON.parse(match[1]);
+    const metadata = JSON.parse(match[1]);
     const cleanContent = raw.replace(METADATA_REGEX, "").trim();
     return { cleanContent, metadata };
   } catch {
@@ -36,16 +15,14 @@ export function parseAIResponse(raw: string): ParsedResponse {
   }
 }
 
-export function useChat(initialMessage?: Message) {
-  const [messages, setMessages] = useState<Message[]>(
-    initialMessage ? [initialMessage] : []
-  );
+export function useChat(initialMessage) {
+  const [messages, setMessages] = useState(initialMessage ? [initialMessage] : []);
   const [isLoading, setIsLoading] = useState(false);
-  const [lastMetadata, setLastMetadata] = useState<ChatMetadata | null>(null);
+  const [lastMetadata, setLastMetadata] = useState(null);
 
   const sendMessage = useCallback(
-    async (message: string): Promise<void> => {
-      const userMessage: Message = {
+    async (message) => {
+      const userMessage = {
         content: message,
         isUser: true,
         timestamp: new Date(),

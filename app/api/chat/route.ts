@@ -10,10 +10,10 @@ import {
   ALL_SERVICES_QUERY,
 } from "@/sanity/lib/queries";
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || "");
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || "", { apiVersion: "v1" });
 
 // Using stable gemini-1.5-flash model
-const MODEL_NAME = "gemini-1.5-flash";
+const MODEL_NAME = "gemini-3.5-flash"; // updated to supported model
 
 async function getKagisoContext() {
   try {
@@ -214,18 +214,57 @@ export async function POST(req: Request) {
       systemInstruction: systemPrompt,
     });
 
-    // Formulate history from previous messages (excluding the last one which we send as prompt)
-    const history = messages.slice(0, -1).map((msg: any) => ({
-      role: msg.role === "user" ? "user" : "model",
-      parts: [{ text: msg.content }],
-    }));
+    // Build chat history ensuring the first entry is a user message
+    const rawHistory = messages.slice(0, -1);
+    let history: any[] = [];
+    if (rawHistory.length > 0) {
+      // Find the first user message index
+      const firstUserIdx = rawHistory.findIndex((msg: any) => msg.role === "user");
+      if (firstUserIdx !== -1) {
+        const filteredHistory = rawHistory.slice(firstUserIdx);
+        history = filteredHistory.map((msg: any) => ({
+          role: msg.role === "user" ? "user" : "model",
+          parts: [{ text: msg.content }],
+        }));
+      } else {
+        // No user message found in history (e.g. only contains the initial welcome message).
+        // Fallback to empty history.
+        history = [];
+      }
+    }
 
-    // Start chat session with multi-turn history
-    const chat = model.startChat({ history });
+    // Direct call to Gemini API using fetch (v1beta endpoint)
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`;
+    
+    const contents = [
+      ...history,
+      {
+        role: "user",
+        parts: [{ text: latestMessage.content }],
+      },
+    ];
 
-    // Send latest query
-    const result = await chat.sendMessage(latestMessage.content);
-    const text = result.response.text();
+    const requestBody = {
+      systemInstruction: {
+        parts: [{ text: systemPrompt }],
+      },
+      contents,
+    };
+
+    const apiResponse = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!apiResponse.ok) {
+      const errText = await apiResponse.text();
+      console.error("Gemini API error:", errText);
+      return NextResponse.json({ error: `Gemini API error: ${apiResponse.status} ${apiResponse.statusText}` }, { status: 500 });
+    }
+
+    const resultJson = await apiResponse.json();
+    const text = resultJson?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
 
     return NextResponse.json({
       message: {
