@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import { NextResponse } from "next/server";
 import { client } from "@/sanity/lib/client";
 import {
@@ -10,10 +10,7 @@ import {
   ALL_SERVICES_QUERY,
 } from "@/sanity/lib/queries";
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || "", { apiVersion: "v1" });
-
-// Using stable gemini-1.5-flash model
-const MODEL_NAME = "gemini-3.5-flash"; // updated to supported model
+const MODEL_NAME = "gemini-2.5-flash";
 
 async function getKagisoContext() {
   try {
@@ -40,7 +37,7 @@ async function getKagisoContext() {
   }
 }
 
-function buildSystemPrompt(context: any) {
+function buildSystemPrompt(context) {
   const profile = context?.profile;
   const experience = context?.experience;
   const projects = context?.projects;
@@ -178,7 +175,7 @@ IMPORTANT: The metadata block MUST be on its own line at the end of the message.
 `;
 }
 
-export async function POST(req: Request) {
+export async function POST(req) {
   try {
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
       return NextResponse.json(
@@ -208,30 +205,19 @@ export async function POST(req: Request) {
     const sanityContext = await getKagisoContext();
     const systemPrompt = buildSystemPrompt(sanityContext);
 
-    // Get model instance with system instructions
-    const model = genAI.getGenerativeModel({
-      model: MODEL_NAME,
-      systemInstruction: systemPrompt,
-    });
 
-    // Build chat history ensuring the first entry is a user message
+    // Build chat history ensuring the first entry is a user message.
+    // Fallback to empty array if rawHistory has no user messages (e.g. first turn).
     const rawHistory = messages.slice(0, -1);
-    let history: any[] = [];
-    if (rawHistory.length > 0) {
-      // Find the first user message index
-      const firstUserIdx = rawHistory.findIndex((msg: any) => msg.role === "user");
-      if (firstUserIdx !== -1) {
-        const filteredHistory = rawHistory.slice(firstUserIdx);
-        history = filteredHistory.map((msg: any) => ({
+    const firstUserIdx = rawHistory.length > 0
+      ? rawHistory.findIndex((msg) => msg.role === "user")
+      : -1;
+    const history = firstUserIdx !== -1
+      ? rawHistory.slice(firstUserIdx).map((msg) => ({
           role: msg.role === "user" ? "user" : "model",
           parts: [{ text: msg.content }],
-        }));
-      } else {
-        // No user message found in history (e.g. only contains the initial welcome message).
-        // Fallback to empty history.
-        history = [];
-      }
-    }
+        }))
+      : [];
 
     // Direct call to Gemini API using fetch (v1beta endpoint)
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`;
@@ -272,10 +258,10 @@ export async function POST(req: Request) {
         content: text,
       },
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini API error:", error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "There was an error processing your request" },
+      { error: error?.message ?? "There was an error processing your request" },
       { status: 500 }
     );
   }

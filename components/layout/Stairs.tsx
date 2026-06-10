@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
-const stairAnimation = {
+const stairAnimation: Variants = {
   initial: {
     top: "0%",
   },
