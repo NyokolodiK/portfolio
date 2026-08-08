@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
-import { useChat } from "@/hooks/useChat";
-import ChatTrigger from "./ChatTrigger";
 import ChatHeader from "./ChatHeader";
 import HistoryPanel from "./HistoryPanel";
 import MessagesList from "./MessagesList";
 import ChatInput from "./ChatInput";
+import ChatTrigger from "./ChatTrigger";
+import { useChat } from "@/hooks/useChat";
+import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 const FALLBACK_PROMPTS = [
   "Tell me about Kagiso's React experience",
@@ -71,8 +71,8 @@ export default function EnhancedChatPopup() {
             transition={{ duration: 0.2 }}
             className={`${
               isFullScreen
-                ? "fixed inset-4 w-auto h-auto z-[100]"
-                : "absolute bottom-20 right-0 w-96 sm:w-[28rem] h-[36rem]"
+                ? "fixed inset-4 z-[100]"
+                : "fixed bottom-20 right-4 sm:right-0 w-[95vw] max-w-md sm:w-[28rem] h-[70vh] sm:h-[36rem] z-[60]"
             } bg-primary/95 backdrop-blur-xl border border-accent/20 rounded-lg shadow-2xl flex flex-col overflow-hidden transition-all`}
           >
             <ChatHeader

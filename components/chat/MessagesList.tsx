@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Navigation } from "lucide-react";
 import ChatMessage from "./ChatMessage";
+import { Sparkles, Navigation } from "lucide-react";
 
 export default function MessagesList({
   messages,
@@ -30,7 +30,7 @@ export default function MessagesList({
   const currentSuggestions = dynamicSuggestions && dynamicSuggestions.length > 0 ? dynamicSuggestions : fallbackPrompts;
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4">
       {messages.map((message, index) => (
         <ChatMessage
           key={index}
@@ -99,64 +99,6 @@ export default function MessagesList({
       </AnimatePresence>
 
       {/* Dynamic contextual suggestions after AI reply */}
-      <AnimatePresence>
-        {showDynamicSuggestions && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="space-y-2"
-          >
-            <p className="text-xs text-white/50 font-semibold flex items-center gap-1">
-              <Sparkles className="h-3 w-3" /> You might also ask:
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {dynamicSuggestions.map((suggestion, index) => (
-                <motion.button
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.05 * index }}
-                  onClick={() => onPromptClick(suggestion)}
-                  className="text-xs bg-accent/10 hover:bg-accent/20 border border-accent/20 hover:border-accent/40 px-3 py-1.5 rounded-full text-white/75 hover:text-white transition-all"
-                >
-                  {suggestion}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Loading indicator */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            className="flex gap-2 items-center ml-12 bg-accent/10 px-4 py-3 rounded-2xl rounded-tl-none w-fit"
-          >
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1 }}
-              className="w-2 h-2 bg-accent rounded-full"
-            />
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1, delay: 0.2 }}
-              className="w-2 h-2 bg-accent rounded-full"
-            />
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1, delay: 0.4 }}
-              className="w-2 h-2 bg-accent rounded-full"
-            />
-            <span className="text-xs text-white/60 ml-2">AI is thinking...</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <div ref={messagesEndRef} />
     </div>
