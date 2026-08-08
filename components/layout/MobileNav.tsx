@@ -13,14 +13,17 @@ const MobileNav = () => {
       <SheetTrigger className="flex justify-center items-center">
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col">
-        <div className="mt-32 mb-40  text-center text-2xl">
+
+      {/* Make the sheet content fill the viewport and allow vertical scrolling */}
+      <SheetContent className="flex flex-col h-screen max-h-screen overflow-y-auto p-6">
+        <div className="mt-8 mb-6 text-center">
           <Link href="/">
             <h1 className="text-4xl font-semibold">
               K<span className="text-accent">.</span>
             </h1>
           </Link>
         </div>
+
         <nav className="flex flex-col justify-center items-center gap-8">
           {links.map((link) => (
             <Link
